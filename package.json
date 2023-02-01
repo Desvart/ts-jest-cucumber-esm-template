@@ -1,12 +1,35 @@
 {
   "name": "ts-template",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.0.0",
+  "description": "This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure, and Jest, Cucumber, ESLint and Prettier already configured for TS.",
+  "keywords": [
+    "BDD",
+    "clean architecture",
+    "hexagonal architecture",
+    "ATDD",
+    "cucumber",
+    "testing",
+    "automation",
+    "TypeScript"
+  ],
+  "homepage": "https://github.com/Desvart/ts-template",
+  "repository": "https://github.com/Desvart/ts-template.git",
+  "bugs": {
+    "url": "https://github.com/Desvart/ts-template/issues",
+    "email": "derek.svart@gmail.com"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "license": "GPL-3.0-or-later",
+  "author": "Desvart <derek.svart@gmail.com>",
+  "private": true,
+
+  "main": "index.js",
+
+  "scripts": {
+    "pretest": "",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "posttest": "",
+    "compile": "echo \"Error: no compilation specified\" && exit 1",
+    "lint": "echo \"Error: no linter specified\" && exit 1",
+    "fix":  "echo \"Error: no linter specified\" && exit 1"
+  }
 }
