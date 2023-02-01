@@ -1,5 +1,5 @@
 # ts-template
-This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure, and Jest, Cucumber, ESLint and Prettier already configured for TS.
+This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure for an hexagonal architecture, and Jest, Cucumber, ESLint and Prettier already configured for TS.
 
 You can clone this repository or apply the below walkthrough to get a similar results.
 Some configurations are specific to the IDE I use (WebStorm) and should be adapted to yours.
@@ -12,17 +12,14 @@ The IDE used is WebStorm and the terminal is PowerShell. Here are the main steps
 https://www.jetbrains.com/help/webstorm/application-development-guidelines.html
 
 1. Initialise a NodeJs project in WebStorm
-1. Create the folder structure
-
-
-
-2. Setup the TS mode
-2. Setup the Js/Ts standard  
+2. Create the folder structure
+3. Setup the TS mode
+4. Setup the Js/Ts standard  
    https://standardjs.com/#can-i-use-a-javascript-language-variant-like-flow-or-typescript
-2. Setup the linter and auto-formatter
-2. Setup the unit tests framework for TS
+5. Setup the linter and auto-formatter
+6. Setup the unit tests framework for TS
    https://www.jetbrains.com/webstorm/guide/tutorials/react_typescript_tdd/testing/
-3. Setup the Cucumber test framework for TS
+7. Setup the Cucumber test framework for TS
 
 
 ## folder structure
@@ -51,8 +48,8 @@ The project structure is as followed (excluded node_modules):
 
 To create above the structure, run the following command
 
-    mkdir bin, config, dist, doc/feature, infra/driven-side, infra/driver-side, test/unit, test/functional,  
-          src/module-X/app-use-case, src/module-X/config, src/module-X/domain, src/module-X/entity, src/module-X/port
+    mkdir bin, config, dist, doc/feature, src/module-X/infra/driven-side, src/module-X/infra/driver-side, test/unit, test/functional,  
+          src/module-X/domain/use-case, src/module-X/config, src/module-X/domain/entity, src/module-X/domain/port
 
 ## Initialise a NodeJs project
 For control purposes, we will set up the project from scratch and doing it mostly manually, hence the detailed description.
