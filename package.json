@@ -25,11 +25,12 @@
   "main": "index.js",
 
   "scripts": {
+    "lint": "echo \"Error: no linter specified\" && exit 1",
+    "fix":  "echo \"Error: no linter specified\" && exit 1",
+    "clean": "echo \"Error: no prettier specified\" && exit 1",
     "pretest": "",
     "test": "echo \"Error: no test specified\" && exit 1",
     "posttest": "",
-    "compile": "echo \"Error: no compilation specified\" && exit 1",
-    "lint": "echo \"Error: no linter specified\" && exit 1",
-    "fix":  "echo \"Error: no linter specified\" && exit 1"
+    "compile": "echo \"Error: no compilation specified\" && exit 1"
   }
 }
