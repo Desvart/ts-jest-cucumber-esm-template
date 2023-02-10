@@ -1,4 +1,5 @@
 # ts-template
+<a href="https://github.com/desvart/ts-template/blob/master/LICENSE"><img src="https://img.shields.io/github/license/desvart/ts-template" alt="GitHub license"/> </a>
 
 This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure
 for a hexagonal architecture, and Jest, Cucumber, ESLint and Prettier already configured for TS.
@@ -7,8 +8,8 @@ To use this template, you can either clone it for your project or apply the belo
 Some configurations are specific to the IDE I use (WebStorm) and should be adapted to yours. Beside the optional
 configuration of SonarLint, the whole process should take less than 15 minutes to complete.
 
-**WARNING: this template is functional (for NodeJs + Typescript + ESLint + Prettier all configured) but still miss unit
-and functional test framework.!!**
+**WARNING: this template is functional (for NodeJs + Typescript + ESLint + Prettier + Jest for TS all configured) but 
+still miss a functional test framework.!!**
 
 # Project setup
 
@@ -89,8 +90,8 @@ The IDE used is WebStorm and the terminal is PowerShell. Here are the main steps
 3. Create the `/tsconfig.json` file with this minimal configuration:
 
        {
-         "include": ["src/**/*", "test/**/*"],
-         "exclude": ["test/**/*.spec.ts"],
+         "include": ["src/**/*"],
+         "exclude": ["node_modules", test/**/*"],
          "compilerOptions": { /* https://www.typescriptlang.org/tsconfig */
          
            /* Modules */
@@ -207,17 +208,13 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
 
    First install a package that enable the parsing of TypeScript files by ESLint
 
-       npm i @typescript-eslint/parser
+       npm install --save-dev --save-exact @typescript-eslint/parser
 
    And then configure ESLint to use that parser and parse only TypeScript files in the project. In `/package.json`, adapt
    ESLint configuration as followed:
 
        "eslintConfig": {
          "parser": "@typescript-eslint/parser",
-         "extends": [
-           "airbnb-base",
-           "plugin:prettier/recommended"
-         ],
          "settings": {
            "import/resolver": {
              "node": {
@@ -230,25 +227,17 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
    For linting rules specific to TypeScript language, we can use the default ones proposed
    by [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin).
 
-       npm i @typescript-eslint/eslint-plugin
+       npm install --save-dev --save-exact @typescript-eslint/eslint-plugin
 
    And then adapt the ESLint configuration in `/package.json` (again, be careful on the typescript-eslint plugin position
    in the extends section):
 
        "eslintConfig": {
-         "parser": "@typescript-eslint/parser",
          "extends": [
            "plugin:@typescript-eslint/recommended",
            "airbnb-base",
            "plugin:prettier/recommended"
-         ],
-         "settings": {
-           "import/resolver": {
-             "node": {
-               "extensions": [".ts"]
-             }
-           }
-         }
+         ]
        }
 
    Finally, make minor changes to the ESLint/Prettier rules to:
@@ -257,19 +246,6 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
     * force prettier to use single quotes rather than double quotes.
 
           "eslintConfig": {
-            "parser": "@typescript-eslint/parser",
-            "extends": [
-              "plugin:@typescript-eslint/recommended",
-              "airbnb-base",
-              "plugin:prettier/recommended"
-            ],
-            "settings": {
-              "import/resolver": {
-                "node": {
-                  "extensions": [".ts"]
-                }
-              }
-            },
             "rules": {
               "no-console": "off",
               "import/extensions": "off",
@@ -277,7 +253,16 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
             }
           }
 
-5. [OPTIONAL] Set up SonarLint in Webstorm
+5. Configure basic script commands in `package.json`
+
+       "scripts": {
+         "lint": "eslint ./**/*.ts",
+         "fix": "eslint ./**/*.ts --fix",
+         "precompile": "",
+         "compile": "tsc --build --clean && tsc"
+       }
+
+6. [OPTIONAL] Set up SonarLint in Webstorm
 
    SonarLint is also a linter and code formatter but is integrated directly into the IDE through plugins. Most rules are
    duplicates from the ones from ESLint or Prettier. There are some that are complementary. That is why I decided to add
@@ -286,27 +271,134 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
 
 ## Set up the unit test framework for TypeScript
 
-// TBD
-https://www.jetbrains.com/help/webstorm/application-development-guidelines.html
-https://www.jetbrains.com/webstorm/guide/tutorials/react_typescript_tdd/testing/
+As for the previous choices, I will use the most commonly used and most simple to set up unit test framework. At the 
+time of this project, it is Jest.
+
+Ref.: 
+* [Test framework comparison 1](https://raygun.com/blog/javascript-unit-testing-frameworks/)
+* [Test framework comparison 2](https://www.testim.io/blog/best-unit-testing-framework-for-javascript/)
 
 1. Install Jest
 
-       npm install --save-dev jest
+       npm install --save-dev --save-exact jest @types/jest ts-jest
 
-2. Configure Jest in ``package.json``
+   ts-jest ensures the transpilation on the fly of TypeScript tests files to JavaScript files to make them compatible
+   for jest. Thanks to ts-jest, we don't need to transpile our TypeScript tests files and store the output somewhere.
 
-3. Install Jest for typescript
+   `@types/jest` is one way to have Jest globals available for our tests files. The main advantage of this module is 
+   that it doesn't require you to explicitly import Jest methods in the test files. The disadvantage is that this module
+   is a third party library not maintained by the Jest project. It is maintained at 
+   [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/jest) which provides some
+   guaranty of quality, but, nonetheless, it is not part of the Jest project, which generates a dependency risk. 
+   Therefore, as recommended by [Jest documentation](https://jestjs.io/docs/getting-started#type-definitions), try to 
+   match jest and @types/jest versions as closely as possible to mitigate retro-compatibility issues.
 
-       npm install --save-dev ts-jest
-       npm install --save-dev ts-node
+   The other way to handle Jest globals, is to avoid @types/jest and, instead, install @jest/globals (maintained by 
+   Jest project). Then, you need to explicitly import Jest methods in all your test files:
 
-4. Configure ``ts-jest`` and ``ts-node``
+       import {describe, expect, test} from '@jest/globals';
+
+2. Configure Jest in `package.json`
+
+       "jest": {
+         "preset": "ts-jest",
+         "testEnvironment": "node",
+         "verbose": true,
+         "coverageDirectory": "./test/coverage/",
+         "coverageThreshold": {
+           "global": {
+             "branches": 80,
+             "functions": 80,
+             "lines": 80,
+             "statements": -10
+           }
+         }
+       }
+   In this configuration, I made the choice to make the test fails if the global test coverage is below 80%.
+
+3. Add test associated script commands in `package.json`
+
+       "scripts": {
+         "pretest": "",
+         "test": "jest --coverage ./test/unit",
+         "posttest": "",
+         "precompile": "jest --coverage ./test/unit",
+       }
+  
+4. In `package.json`, adapt ESLint configuration to be compatible with jest and avoid false positives from the linter:
+
+       "eslintConfig": {
+         "env": {
+           "jest": true
+         }
+       }
+
+5. Change the behaviour of ESLint to avoid false positives on missing imports with typescript files.
+
+       npm install --save-dev --save-exact eslint-import-resolver-typescript
+
+   In `package.json`, adapt the ESLint configuration:
+
+       "eslintConfig": {
+         "settings": {
+           "import/resolver": {
+             "typescript": {},
+             "node": {
+               "extensions": [
+                 ".ts"
+               ]
+             }
+           }
+         }
+       }
+
+6. [OPTIONAL] Configure Jest and TypeScript to use absolute paths in their import patterns, rather than relative paths
+   In `tsconfig.json`,
+
+       "compilerOptions": {
+         "baseUrl": ".",
+         "paths": { "@/*": ["./src/*"] }
+       }
+
+   Jest in not aware of the paths mapper defined in `tsconfig.json`. We need to define a similar rule in the jest
+   configuration in `package.json`:
+
+       "jest": {
+         "moduleNameMapper": {
+           "^@/(.*)$": "<rootDir>/src/$1"
+         }
+       }
+
+7. Structure your test repository
+   Since I tend to avoid mixing test files and src files, I like to have my unit test forlder structure to be similar to
+   the src file structure.
+
+   For instance, create a `/test/unit/module-X/domain/entity/bar.test.ts` file to test 
+   `/src/module-X/domain/entity/bar.ts` class.  
+   `bar.test.ts`:
+
+       import Bar from '@/module-X/domain/entity/bar';
+   
+       describe('Sample test suite', () => {
+         test('should be able to compare numbers', () => {
+           expect(2).toEqual(2);
+         });
+       
+         test('should be able to create a new instance of class Bar', () => {
+           const s = new Bar('test');
+           expect(s.foo()).toEqual('test');
+         });
+       });
+
 
 ## Set up the functional test framework for TypeScript
 
 // TBD
 https://khalilstemmler.com/articles/categories/test-driven-development/
+https://www.elliotdenolf.com/blog/cucumberjs-with-typescript
+https://ravichandranjv.blogspot.com/2019/04/bdd-with-jest-cucumber-typescript.html
+https://www.npmjs.com/package/cucumber-jest?activeTab=readme
+https://github.com/DurveshNaik87/Jest-Cucumber-Typerscript
 
 1. Install cucumber for js
 

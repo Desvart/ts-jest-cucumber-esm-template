@@ -1,6 +1,6 @@
 {
-  "include": ["src/**/*", "test/**/*"],
-  "exclude": ["test/**/*.spec.ts"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "test/**/*.ts"],
   "compilerOptions": { /* https://www.typescriptlang.org/tsconfig */
 
     /* Modules */
@@ -9,6 +9,8 @@
     "moduleResolution": "node16",                 /* Specify how TypeScript looks up a file from a given module specifier. */
     "lib": ["es6"],                               /* Specify library files to be included in the compilation. */
     "resolveJsonModule": true,                    /* Enable importing .json files. */
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] },
 
     /* Emit */
     "outDir": "./dist",                           /* Specify an output folder for all emitted files. */
