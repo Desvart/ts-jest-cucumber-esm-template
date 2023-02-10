@@ -202,6 +202,12 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
    The order of the extensions is important since the last ones will override the first ones. Here we specifically
    request prettier rules to override eslint-airbnb configuration.
 
+   In Webstorm, don't forget to deactivate the IDE option that "Reformat on action" (CTRL+ALT+L) based on Prettier since
+   it will only use Prettier rules and not the ESLint + Prettier setup configured above. Instead, you should go to the 
+   `package.json` file and in the Jest configuration section, make a right click and select "Apply ESLint Code Style 
+   rules". By doing so, the IDE will ensure those are the rules checked automatically and applied when asking for an 
+   autoformatting of the code.
+
 4. Set up ESLint and TypeScript to work together
 
    Ref.: [Webstorm - Linting Typescript](https://www.jetbrains.com/help/webstorm/linting-typescript.html)
