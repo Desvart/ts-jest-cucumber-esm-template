@@ -1,5 +1,5 @@
 # ts-template
-<a href="https://github.com/desvart/ts-template/blob/master/LICENSE"><img src="https://img.shields.io/github/license/desvart/ts-template" alt="GitHub license"/> </a>
+<a href="https://github.com/desvart/ts-template/blob/master/LICENSE"><img src="https://img.shields.io/github/license/desvart/ts-template?color=blue" alt="GitHub license"/> </a>
 
 This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure
 for a hexagonal architecture, and Jest, Cucumber, ESLint and Prettier already configured for TS.
