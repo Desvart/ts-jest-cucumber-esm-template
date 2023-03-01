@@ -25,16 +25,22 @@
     "lint": "eslint ./**/*.ts",
     "fix": "eslint ./**/*.ts --fix",
     "pretest": "",
-    "test": "jest --coverage ./test/unit",
+    "test": "jest --coverage .*.test.ts",
+    "testF": "SET NODE_OPTIONS=--loader ts-node/esm --no-warnings --experimental-specifier-resolution=node && cucumber-js",
     "posttest": "",
-    "precompile": "jest --coverage ./test/unit",
-    "compile": "tsc --build --clean && tsc"
+    "precompile": "jest --coverage .*.test.ts",
+    "remove-build": "rmdir /s /q dist",
+    "create-build": "mkdir dist",
+    "clean": "npm run remove-build && npm run create-build",
+    "compile": "npm run clean && tsc"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "8.11.0",
     "@types/jest": "29.4.0",
     "@types/node": "18.11.18",
     "@typescript-eslint/eslint-plugin": "5.50.0",
     "@typescript-eslint/parser": "5.50.0",
+    "cucumber-tsflow": "4.0.0-rc.7",
     "eslint": "8.33.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.6.0",
@@ -44,8 +50,10 @@
     "jest": "29.4.1",
     "prettier": "2.8.3",
     "ts-jest": "29.0.5",
+    "ts-node": "10.9.1",
     "typescript": "4.9.5"
   },
+  "type": "module",
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
     "extends": [
@@ -69,6 +77,7 @@
     "rules": {
       "no-console": "off",
       "import/extensions": "off",
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
       "prettier/prettier": [
         "error",
         {
