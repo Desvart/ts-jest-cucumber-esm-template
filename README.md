@@ -8,9 +8,6 @@ To use this template, you can either clone it for your project or apply the belo
 Some configurations are specific to the IDE I use (WebStorm) and should be adapted to yours. Beside the optional
 configuration of SonarLint, the whole process should take less than 15 minutes to complete.
 
-**WARNING: this template is functional (for NodeJs + Typescript + ESLint + Prettier + Jest for TS all configured) but 
-still miss a functional test framework.!!**
-
 # Project setup
 
 For control purposes, we will set up the project from scratch and doing it mostly manually, hence the detailed
@@ -376,12 +373,12 @@ Ref.:
        }
 
 7. Structure your test repository
-   Since I tend to avoid mixing test files and src files, I like to have my unit test forlder structure to be similar to
+   Since I tend to avoid mixing test files and src files, I like to have my unit test folder structure to be similar to
    the src file structure.
 
-   For instance, create a `/test/unit/module-X/domain/entity/bar.test.ts` file to test 
+   For instance, create a `/test/unit/module-X/domain/entity/calculator.test.ts` file to test 
    `/src/module-X/domain/entity/bar.ts` class.  
-   `bar.test.ts`:
+   `calculator.test.ts`:
 
        import Bar from '@/module-X/domain/entity/bar';
    
@@ -399,17 +396,55 @@ Ref.:
 
 ## Set up the functional test framework for TypeScript
 
-// TBD
-https://khalilstemmler.com/articles/categories/test-driven-development/
-https://www.elliotdenolf.com/blog/cucumberjs-with-typescript
-https://ravichandranjv.blogspot.com/2019/04/bdd-with-jest-cucumber-typescript.html
-https://www.npmjs.com/package/cucumber-jest?activeTab=readme
-https://github.com/DurveshNaik87/Jest-Cucumber-Typerscript
+1. Ensure you have a version of NodeJs that supports ESM loader (even in experimental mode). In my case, NodeJS version 19.7.0 works.
 
-1. Install cucumber for js
+2. Install cucumberJs
 
-        npm install --save-dev cucumber
+       npm install --save-dev --save-exact @cucumber/cucumber ts-node
 
-2. Configure cucumber for js
-3. Install cucumber for ts
-4. Configure cucumber for ts
+2. Configure cucumber
+   By creating the following `cucumber.json` file
+
+       {
+         "default": {
+           "paths": ["src/**/*.feature"],
+           "import": ["src/**/*.steps.ts"],
+           "parallel": 1,
+           "format": ["html:test-reports/cucumber/cucumber-report.html"],
+           "publishQuiet": true
+         }
+       }
+
+3. Modify the `package.json` file to add the following commands:
+
+       "cucumber": "SET NODE_OPTIONS=--loader ts-node/esm --no-warnings --experimental-specifier-resolution=node && cucumber-js",
+
+   This command will generate the js files needed by CucumberJs on the fly with ts-node, avoiding polluting the project.
+
+4. Create your `*.feature` files in Gherkin and your glue code in `*.steps.ts` files.
+
+5. Modify the `tsconfig.json` file to avoid compiling the `.steps.ts` and `.test.ts` files while building the distribution:
+
+       "exclude": ["node_modules", "src/**/*.test.ts", "src/**/*.steps.ts"],
+
+Ref.:
+* [Cucumber with TypeScript](https://www.elliotdenolf.com/blog/cucumberjs-with-typescript)
+
+## Finalize the template by creating commands for the final build in `package.json`
+   In order to generate a clean build, I want to clean up any previously compiled files from the distribution folder. Since Window 
+   doesn't offer a clean "rm -rf" command, I have opted for a simple trick: delete the whole dist folder and recreate it, empty.
+
+    "scripts": {
+      "lint": "eslint ./**/*.ts",
+      "fix": "eslint ./**/*.ts --fix",
+      "pretest": "",
+      "unit": "jest --coverage .*.test.ts",
+      "cucumber": "SET NODE_OPTIONS=--loader ts-node/esm --no-warnings --experimental-specifier-resolution=node && cucumber-js",
+      "test": "npm run unit && npm run cucumber",
+      "posttest": "",
+      "precompile": "npm run test",
+      "clean": "rmdir /s /q dist && mkdir dist",
+      "compile": "npm run clean && tsc"
+    },
+  
+
