@@ -1,1 +1,0 @@
-{"version":3,"file":"bar.js","sourceRoot":"","sources":["../../../../src/module-X/domain/entity/bar.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,GAAG;IACL,KAAK,CAAS;IAE/B,YAAY,MAAc;QACxB,IAAI,CAAC,KAAK,GAAG,MAAM,CAAC;IACtB,CAAC;IAED,GAAG;QACD,OAAO,IAAI,CAAC,KAAK,CAAC;IACpB,CAAC;CACF"}

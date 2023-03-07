@@ -1,6 +1,7 @@
 /.idea/
 /node_modules/
-/test/coverage/
+/test-reports/
+/dist/
 
 /TODO.md
-/dist/
+

@@ -23,4 +23,4 @@ Feature: As a user, I want to add and substract two numbers
   Scenario: Sub two positive numbers
     Given
     When I sub 2 and 2
-    Then the result of the substraction is 1
+    Then the result of the substraction is 0
