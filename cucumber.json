@@ -3,7 +3,7 @@
     "paths": ["src/**/*.feature"],
     "import": ["src/**/*.steps.ts"],
     "parallel": 1,
-    "format": ["html:test-reports/cucumber/cucumber-report.html"],
+    "format": ["html:test-reports/cucumber/cucumber-report.html", "progress-bar"],
     "publishQuiet": true
   }
 }

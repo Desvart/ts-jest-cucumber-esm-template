@@ -2,7 +2,7 @@
 <a href="https://github.com/desvart/ts-template/blob/master/LICENSE"><img src="https://img.shields.io/github/license/desvart/ts-template?color=blue" alt="GitHub license"/> </a>
 
 This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure
-for a hexagonal architecture, and Jest, Cucumber, ESLint and Prettier already configured for TS.
+for a hexagonal architecture, and Jest, Cucumber, ts-mockito, ESLint and Prettier already configured for TS.
 
 To use this template, you can either clone it for your project or apply the below walkthrough to build it from scratch.
 Some configurations are specific to the IDE I use (WebStorm) and should be adapted to yours. Beside the optional
@@ -12,7 +12,7 @@ configuration of SonarLint, the whole process should take less than 15 minutes t
 
 For control purposes, we will set up the project from scratch and doing it mostly manually, hence the detailed
 walkthrough.
-The IDE used is WebStorm and the terminal is PowerShell. Here are the main steps:
+The IDE used is IntelliJ and the terminal is PowerShell. Here are the main steps:
 
 1. [Initialise a NodeJs project in WebStorm](#initialise-a-nodejs-project-in-webstorm)
 2. [Set up TypeScript](#set-up-typescript)
@@ -400,7 +400,7 @@ Ref.:
 
 2. Install cucumberJs
 
-       npm install --save-dev --save-exact @cucumber/cucumber ts-node
+       npm install --save-dev --save-exact @cucumber/cucumber ts-node ts-mockito
 
 2. Configure cucumber
    By creating the following `cucumber.json` file
