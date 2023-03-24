@@ -1,0 +1,40 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "airbnb-base",
+        "plugin:prettier/recommended"
+    ],
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {},
+            "node": {
+                "extensions": [
+                    ".ts"
+                ]
+            }
+        }
+    },
+    "rules": {
+        "no-console": "off",
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true
+            }
+        ]
+    }
+}
