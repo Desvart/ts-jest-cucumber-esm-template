@@ -24,7 +24,7 @@ jobs:
 
   sonarcloud:
     name: SonarCloud
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
