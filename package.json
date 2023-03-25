@@ -32,6 +32,7 @@
     "pretest": "",
     "unit": "jest --config=\"./config/jest.config.ts\" --coverage .*.test.ts",
     "cucumber_old": "SET NODE_OPTIONS=--loader ts-node/esm --no-warnings --experimental-specifier-resolution=node --enable-source-maps && cucumber-js --config=\"./config/cucumber.json\"",
+    "cucumber_old2": "SET NODE_OPTIONS=--loader ts-paths-esm-loader --no-warnings --experimental-specifier-resolution=node --enable-source-maps && cucumber-js --config=\"./config/cucumber.json\"",
     "cucumber": "node --loader ts-paths-esm-loader --no-warnings --experimental-specifier-resolution=node --enable-source-maps node_modules/@cucumber/cucumber/bin/cucumber.js --config=\"./config/cucumber.json\"",
     "test": "npm run unit && npm run cucumber",
     "posttest": "",
