@@ -34,5 +34,5 @@
     "noImplicitAny": true,                        /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     "noImplicitOverride":  true,
     "noImplicitReturns": true                     /* Report error when not all code paths in function return a value. */
-  }
+  },
 }
