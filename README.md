@@ -1,5 +1,9 @@
 # ts-template
 <a href="https://github.com/desvart/ts-template/blob/master/LICENSE"><img src="https://img.shields.io/github/license/desvart/ts-template?color=blue" alt="GitHub license"/> </a>
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ts-template)
+[![Test](https://github.com/Desvart/ts-template/actions/workflows/test.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
+
 
 This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure
 for a hexagonal architecture, and Jest, Cucumber, ts-mockito, ESLint and Prettier already configured for TS.
@@ -395,6 +399,9 @@ Ref.:
 
 
 ## Set up the functional test framework for TypeScript
+
+Contrary to Jest.mock that need an object instance to create a mock from, ts-mockito can create mocks directly from 
+interfaces. This is the main reason why I chose to use ts-mockito over jest.mock.
 
 1. Ensure you have a version of NodeJs that supports ESM loader (even in experimental mode). In my case, NodeJS version 19.7.0 works.
 
