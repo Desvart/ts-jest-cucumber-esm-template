@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  setup:
+  test:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -19,15 +19,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-
-  test-unit:
-    needs: setup
-    runs-on: windows-latest
-    steps:
       - run: npm run unit
-
-  test-features:
-    needs: test-unit
-    runs-on: windows-latest
-    steps:
       - run: npm run cucumber
