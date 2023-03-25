@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Branche CI
 
 on:
   push:
@@ -7,14 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  setup:
     runs-on: windows-latest
-
     strategy:
       matrix:
         node-version: [19.x]
-
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -22,5 +19,21 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+
+  test-unit:
+    needs: setup
+    runs-on: windows-latest
+    steps:
+      - run: npm unit
+
+  test-features:
+    needs: test-unit
+    runs-on: windows-latest
+    steps:
+      - run: npm cucumber
+
+  build:
+    needs: test-features
+    runs-on: windows-latest
+    steps:
+      - run: npm run build
