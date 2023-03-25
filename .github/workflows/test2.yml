@@ -1,10 +1,10 @@
-name: Build
+name: Test2
 
 on:
-  workflow_run:
-    workflows: [ "Test" ]
-    types:
-      - completed
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   setup:
@@ -19,9 +19,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-
-  build:
-    needs: test-features
-    runs-on: windows-latest
-    steps:
-      - run: npm run build
+      - run: npm run unit
+      - run: npm run cucumber
