@@ -36,7 +36,7 @@
     "test": "npm run unit && npm run cucumber",
     "posttest": "",
     "precompile": "npm run test",
-    "clean": "rmdir /s /q dist && mkdir dist",
+    "clean": "rmdir /s /q dist 2>nul && mkdir dist",
     "build": "tsc",
     "compile": "npm run clean && npm run build",
     "dist": "npm run clean && npm run build"
