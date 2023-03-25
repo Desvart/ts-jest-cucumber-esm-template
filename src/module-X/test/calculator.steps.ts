@@ -1,6 +1,15 @@
-import assert from 'assert';
-import { When, Then } from '@cucumber/cucumber';
+import * as assert from 'assert';
+import { Given, When, Then } from '@cucumber/cucumber';
 import Calculator from '../domain/entity/calculator';
+
+Given(/^toto$/, function given(a: number, b: number): void {
+  console.log(`test ${a} ${b}`);
+});
+
+// @given(/^toto ([.*])$/)
+// function givenAValue(value: string): void {
+//   console.log('test 2');
+// };
 
 When(/^I add (-?\d+) and (-?\d+)$/, function when(a: number, b: number) {
   this.a = a;

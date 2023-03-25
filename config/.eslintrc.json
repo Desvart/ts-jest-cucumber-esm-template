@@ -21,6 +21,12 @@
             }
         }
     },
+    "ignorePatterns": [
+        "node_modules/",
+        "dist/",
+        "doc/",
+        ".idea/"
+    ],
     "rules": {
         "no-console": "off",
         "import/extensions": "off",
