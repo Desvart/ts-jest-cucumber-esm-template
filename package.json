@@ -37,9 +37,8 @@
     "posttest": "",
     "precompile": "npm run test",
     "clean": "mkdir dist && rmdir /s /q dist && mkdir dist",
-    "build": "tsc",
-    "compile": "npm run clean && npm run build",
-    "dist": "npm run clean && npm run build"
+    "build": "tsc --build --clean",
+    "compile": "npm run build"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^9.0.1",

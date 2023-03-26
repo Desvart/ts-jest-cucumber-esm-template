@@ -1,9 +1,10 @@
 # ts-template
-<a href="https://github.com/desvart/ts-template/blob/master/LICENSE"><img src="https://img.shields.io/github/license/desvart/ts-template?color=blue" alt="GitHub license"/> </a>
+![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template)
+![License](https://img.shields.io/github/license/desvart/ts-template?color=blue)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ts-template)
 [![Test](https://github.com/Desvart/ts-template/actions/workflows/test.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
-
 
 This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure
 for a hexagonal architecture, and Jest, Cucumber, ts-mockito, ESLint and Prettier already configured for TS.
