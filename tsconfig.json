@@ -32,7 +32,7 @@
     "strict": true,                               /* Enable all strict type-checking options. */
     "alwaysStrict": true,                         /* Ensure 'use strict' is always emitted. */
     "noImplicitAny": true,                        /* Enable error reporting for expressions and declarations with an implied 'any' type. */
-    "noImplicitOverride":  true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true                     /* Report error when not all code paths in function return a value. */
   },
 }

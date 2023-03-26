@@ -1,33 +1,51 @@
-# ts-template
-![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template)
-![License](https://img.shields.io/github/license/desvart/ts-template?color=blue)
+<div style="text-align:center">
 
+# ts-jest-cucumber-esm-template
+
+![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template)
+[![License](https://img.shields.io/github/license/desvart/ts-template?color=blue)](https://github.com/Desvart/ts-template/blob/master/LICENSE) \
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ts-template)
 [![Test](https://github.com/Desvart/ts-template/actions/workflows/test.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test.yml)
 
-This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure
-for a hexagonal architecture, and Jest, Cucumber, ts-mockito, ESLint and Prettier already configured for TS.
+Build on \
+![NodeVersion](https://shields.io/static/v1?label=NodeJS&message=19.X&color=blue)
+![WindowsVersion](https://shields.io/static/v1?label=Windows&message=10&color=blue)
+
+</div>
+
+This project aims to build a NodeJS TypeScript project template to start from scratch. 
+
+This template has the following characteristics:
+* a standard folder structure for a **hexagonal architecture**,
+* Jest configured for TypeScript as **unit testing framework**
+* CucumberJS configured for TypeScript as **functional testing framework**
+* ts-mockito as **mocking framework**
+* ESLint configured for TypeScript with Airbnb standard as **linter** (double with SonarLint for additional checks)
+* Prettier configured through ESLint as **formatter** 
+* a **full compatibility with ESM** (also with Cucumber and Jest)
+* specific configuration to allow ModuleMapper for ESM, TypeScript, Jest and CucumberJS
+* a CI pipeline with GitHub Actions and SonarCloud
 
 To use this template, you can either clone it for your project or apply the below walkthrough to build it from scratch.
-Some configurations are specific to the IDE I use (WebStorm) and should be adapted to yours. Beside the optional
+Some configurations are specific to the IDE I use (IntelliJ) and should be adapted to yours. Beside the optional
 configuration of SonarLint, the whole process should take less than 15 minutes to complete.
 
 # Project setup
 
-For control purposes, we will set up the project from scratch and doing it mostly manually, hence the detailed
-walkthrough.
-The IDE used is IntelliJ and the terminal is PowerShell. Here are the main steps:
+The OS used is Windows 10, the console is PowerShell and the IDE is IntelliJ. 
+NodeJS version is 19.x and NPM version is 9.x.
 
-1. [Initialise a NodeJs project in WebStorm](#initialise-a-nodejs-project-in-webstorm)
+1. [Initialise a NodeJs project](#initialise-a-nodejs-project)
 2. [Set up TypeScript](#set-up-typescript)
 3. [Set up Linter and code formatter for TypeScript](#set-up-linter-and-code-formatter-for-typescript)
 4. [Set up the unit test framework for TypeScript](#set-up-the-unit-test-framework-for-typescript)
 5. [Set up the functional test framework for TypeScript](#set-up-the-functional-test-framework-for-typescript)
+6. [Set up the CI pipeline](#set-up-the-ci-pipeline)
 
-## Initialise a NodeJs project in WebStorm
+## Initialise a NodeJs project
 
-1. Create a new project from scratch in Webstorm and select Node.js as the initial template.
+1. Create a new project from scratch in Webstorm and select NodeJS as the initial template.
 2. Create the `/package.json` file with this minimal configuration:
 
        {
@@ -58,7 +76,9 @@ The IDE used is IntelliJ and the terminal is PowerShell. Here are the main steps
        /config               - global configurations
        /dist                 - released code (to be pushed to BitBurner)  
        /doc
-         /feature            - place for the feature files 
+         /coverage
+         /cucumber-report
+         /jest-report
        /src  
          /module-X           - an idenpendent module as intented by the "clean" hexagonal architecture
            /config           - module configuration
@@ -66,43 +86,41 @@ The IDE used is IntelliJ and the terminal is PowerShell. Here are the main steps
              /entity   
              /port
              /use-case
+           /feature           - place for the feature files
            /infra  
              /driven-side  
              /driver-side
-       /test
-         /unit
-         /cucumber
+           /test              - place for the test files (.steps.ts, .test.ts)
 
    To do so, run the following command
 
-       mkdir bin, config, dist, doc/feature, src/module-X/infra/driven-side, src/module-X/infra/driver-side, test/unit, 
-       test/functional, src/module-X/domain/use-case, src/module-X/config, src/module-X/domain/entity, 
-       src/module-X/domain/port
+       mkdir bin, config, dist, doc/coverage, doc/cucumber-report, doc/jest-report, src/module-X/infra/driven-side,
+       src/module-X/infra/driver-side, src/test, src/module-X/test, src/module-X/domain/use-case, src/module-X/config, 
+       src/module-X/domain/entity, src/module-X/domain/port, src/module-X/feature
 
 ## Set up TypeScript
 
-1. Install the TypeScript.
+1. Install the TypeScript and the definitelyTyped type definition for Node to support Implicit, Explicit and Ambient 
+   types.
 
-       npm install --save-dev --save-exact typescript
+       npm install --save-dev typescript @types/node
 
-2. Install the definitelyTyped type definition for Node to support Implicit, Explicit and Ambient types.
-
-       npm install --save-dev --save-exact @types/node
-
-3. Create the `/tsconfig.json` file with this minimal configuration:
+2. Create the `/tsconfig.json` file with this minimal configuration:
 
        {
-         "include": ["src/**/*"],
-         "exclude": ["node_modules", test/**/*"],
+         "include": ["src/**/*.ts"],
+         "exclude": ["node_modules", "src/**/*.test.ts", "src/**/*.steps.ts"],
          "compilerOptions": { /* https://www.typescriptlang.org/tsconfig */
          
            /* Modules */
            "rootDir": "./src",                           /* Specify the root folder within your source files. */
-           "module": "ES2022",                           /* Specify what module code is generated. */
-           "moduleResolution": "node16",                 /* Specify how TypeScript looks up a file from a given module specifier. */
-           "lib": ["es6"],
+           "module": "ESNext",                           /* Specify what module code is generated. */
+           "moduleResolution": "node",                   /* Specify how TypeScript looks up a file from a given module specifier. */
+           "lib": ["ES2020"],
            "resolveJsonModule": true,                    /* Enable importing .json files. */
-         
+           "allowSyntheticDefaultImports": true,
+           "resolveJsonModule": true,                    /* Enable importing .json files. */
+
            /* Emit */
            "outDir": "./dist",                           /* Specify an output folder for all emitted files. */
            "sourceMap": true,                            /* Create source map files for emitted JavaScript files. */
@@ -122,18 +140,18 @@ The IDE used is IntelliJ and the terminal is PowerShell. Here are the main steps
            "strict": true,                               /* Enable all strict type-checking options. */
            "alwaysStrict": true,                         /* Ensure 'use strict' is always emitted. */
            "noImplicitAny": true,                        /* Enable error reporting for expressions and declarations with an implied 'any' type. */
-           "noImplicitOverride":  true,
+           "noImplicitOverride": true,
            "noImplicitReturns": true
          }
        }
 
-4. In `/package.json`, define a typescript transpilation command by adding
+3. In `/package.json`, define a typescript transpilation command by adding
 
        "scripts": {
-          "compile": "tsc"
+          "compile": "tsc --build --clean"
        }
 
-5. [OPTIONAL] Configure Webstorm to transpile on change.
+4. [OPTIONAL] Configure IDE to transpile on change.
 
 ## Set up linter and code formatter for TypeScript
 
@@ -156,15 +174,10 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
 [Webstorm - Eslint](https://www.jetbrains.com/help/webstorm/eslint.html)  
 [Webstorm - Prettier](https://www.jetbrains.com/help/webstorm/prettier.html)
 
-1. Install Prettier
-
-       npm install --save-dev --save-exact prettier
-
-2. Install ESLint with Airbnb configuration
-
+1. Install Prettier and ESLint with Airbnb configuration
    `eslint-plugin-import` is required by `airbnb-base` (cf. airbnb-base documentation).
 
-       npm install --save-dev --save-exact eslint eslint-config-airbnb-base eslint-plugin-import
+       npm install --save-dev prettier eslint eslint-config-airbnb-base eslint-plugin-import
 
    To set up airbnb we need to extend the default ESLint configuration. In `/package.json`, add the following elements:
 
@@ -174,7 +187,7 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
          ]
        }
 
-3. Set up ESLint and Prettier to work together
+2. Set up ESLint and Prettier to work together
 
    Since Prettier and ESLint are trying to make code formatting but with different rule sets, we need to deactivate the
    ESLint code formatting rules to let Prettier do its job. In such configuration, Prettier is the only one responsible
@@ -185,11 +198,11 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
 
    First, turn off ESLint rules that conflicts with Prettier ones.
 
-       npm install --save-dev --save-exact eslint-config-prettier
+       npm install --save-dev eslint-config-prettier
 
    Second, add Prettier rules to ESLint
 
-       npm install --save-dev --save-exact eslint-plugin-prettier
+       npm install --save-dev eslint-plugin-prettier
 
    Now we need to extend ESLint configuration with prettier rules: in `/package.json` modify the ESLint extends section
    like that:
@@ -210,7 +223,7 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
    rules". By doing so, the IDE will ensure those are the rules checked automatically and applied when asking for an 
    autoformatting of the code.
 
-4. Set up ESLint and TypeScript to work together
+3. Set up ESLint and TypeScript to work together
 
    Ref.: [Webstorm - Linting Typescript](https://www.jetbrains.com/help/webstorm/linting-typescript.html)
 
@@ -261,7 +274,7 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
             }
           }
 
-5. Configure basic script commands in `package.json`
+4. Configure basic script commands in `package.json`
 
        "scripts": {
          "lint": "eslint ./**/*.ts",
@@ -270,7 +283,7 @@ Ref.: [Prettier, ESLint and Typescript](https://dev.to/viniciuskneves/prettier-e
          "compile": "tsc --build --clean && tsc"
        }
 
-6. [OPTIONAL] Set up SonarLint in Webstorm
+5. [OPTIONAL] Set up SonarLint in Webstorm
 
    SonarLint is also a linter and code formatter but is integrated directly into the IDE through plugins. Most rules are
    duplicates from the ones from ESLint or Prettier. There are some that are complementary. That is why I decided to add
@@ -456,3 +469,4 @@ Ref.:
     },
   
 
+## Set up the CI pipeline

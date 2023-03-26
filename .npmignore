@@ -1,0 +1,5 @@
+doc/
+.idea/
+node_modules/
+utils/
+TODO.md
