@@ -1,6 +1,6 @@
 {
   "name": "@desvart/ts-template",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "This project aims to build a template to start clean TypeScript projects from scratch based on a fully testable architecture.",
   "keywords": [
     "BDD",
@@ -41,9 +41,6 @@
     "clean": "mkdir dist && rmdir /s /q dist && mkdir dist",
     "build": "tsc --build --clean",
     "compile": "npm run build"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^9.0.1",
