@@ -10,7 +10,7 @@ describe('Cover the calculator', () => {
     expect(s.add(1, 3)).toEqual(4);
   });
 
-  test.skip('should be able to substract numbers', () => {
+  test('should be able to substract numbers', () => {
     const s = new Calculator();
     expect(s.sub(1, 1)).toEqual(0);
   });
