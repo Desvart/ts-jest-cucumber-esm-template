@@ -1,3 +1,10 @@
+<div style="text-align:center">
+<h3>WARNING</h3>
+This documentation is mostly up-to-date, but some topics (ModuleMapper and CI/CD) are not aligned with the package last update.
+
+A documentation update will come in the following days.
+</div>
+
 # Project setup
 
 If you don't want to clone the package from GitHub or to download it from npm, you can follow the below step-by-step

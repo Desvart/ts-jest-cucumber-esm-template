@@ -1,6 +1,6 @@
 <div style="text-align:center">
 
-# ts-jest-cucumber-esm-template
+# @Desvart/ts-template
 
 ![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template)
 [![License](https://img.shields.io/github/license/desvart/ts-template?color=blue)](https://github.com/Desvart/ts-template/blob/master/LICENSE) \
@@ -14,7 +14,12 @@ Build on \
 
 </div>
 
-This package contains a clean NodeJS TypeScript project template to start from scratch.
+This package contains a clean NodeJS TypeScript project template for starting from scratch.
+
+This template was originally created to help me build and test my code for
+the [BitBurner](https://bitburner.readthedocs.io/en/latest/index.html#) project, hence some uncommon configurations
+choices. Over time, it has become useful in its own rights, outside of its original purpose, hence this standalone
+template.
 
 This template has the following characteristics:
 
@@ -22,14 +27,21 @@ This template has the following characteristics:
 * Jest configured for TypeScript as **unit testing framework**
 * CucumberJS configured for TypeScript as **functional testing framework**
 * ts-mockito as **mocking framework**
-* ESLint configured for TypeScript with Airbnb standard as **linter** (double with SonarLint for additional checks)
-* Prettier configured through ESLint as **formatter**
-* a **full compatibility with ESM** (also with Cucumber and Jest)
-* specific configuration to allow ModuleMapper for ESM, TypeScript, Jest and CucumberJS
-* a CI pipeline with GitHub Actions and SonarCloud
+* all tests frameworks are configure to perform **on-the-fly transpilation**
+* a **full compatibility with ESM** (adapted to also work with CucumberJS and Jest)
+* ModuleMapper configured for ESM on-the-fly transpilation (adapted to also work with Jest and CucumberJS)
+* ESLint configured for TypeScript with Airbnb standard as **linter** (only linter)
+* SonarLint for additional checks static code checkins that are not covered by ESLint
+* Prettier configured through ESLint as **formatter** (only formatter)
+* a CI/CD pipeline with GitHub Actions, SonarCloud and NPM Register
 
-To use this template, you can either clone from GitHub to start your project from scratch, or to download it from npm.
-Lastly you can always apply this 
-[step-by-step walkthrough](https://github.com/Desvart/ts-jest-cucumber-esm-template/blob/master/doc/setup.md) to build 
-it yourself from scratch.
+To use this template, you can either:
+
+* clone it from GitHub [@Desvart/ts-template](https://github.com/Desvart/ts-template) to start your project from
+  scratch,
+* download it from npm [@Desvart/ts-template](https://www.npmjs.com/package/@desvart/ts-template) (and then move the
+  content to your project folder)
+* apply this
+  [step-by-step walkthrough](https://github.com/Desvart/ts-jest-cucumber-esm-template/blob/master/doc/setup.md) to build
+  the template yourself from scratch.
 

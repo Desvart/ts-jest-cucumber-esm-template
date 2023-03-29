@@ -1,7 +1,7 @@
 {
-  "name": "ts-jest-cucumber-esm-template",
-  "version": "1.3.1",
-  "description": "This project aims to build a template to start clean TypeScript projects from scratch with a standard folder structure for an hexagonal architecture, and Jest, Cucumber, ESLint and Prettier already configured for TS.",
+  "name": "@desvart/ts-template",
+  "version": "1.3.2",
+  "description": "This project aims to build a template to start clean TypeScript projects from scratch based on a fully testable architecture.",
   "keywords": [
     "BDD",
     "ATDD",
@@ -14,10 +14,10 @@
     "CI/CD",
     "TypeScript"
   ],
-  "homepage": "https://github.com/Desvart/ts-jest-cucumber-esm-template",
+  "homepage": "https://github.com/Desvart/ts-template",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Desvart/ts-jest-cucumber-esm-template.git"
+    "url": "https://github.com/Desvart/ts-template.git"
   },
   "bugs": {
     "url": "https://github.com/Desvart/ts-template/issues",
