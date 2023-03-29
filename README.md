@@ -1,16 +1,21 @@
 <div style="text-align:center">
 
-# @Desvart/ts-template
+# @desvart/ts-template
 
-![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template)
-[![License](https://img.shields.io/github/license/desvart/ts-template?color=blue)](https://github.com/Desvart/ts-template/blob/master/LICENSE) \
+![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template/release)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ts-template)
-[![Test](https://github.com/Desvart/ts-template/actions/workflows/test.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test.yml)
+[![Test](https://github.com/Desvart/ts-template/actions/workflows/test-release.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test-release.yml)
 
-Build on \
+![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template/master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ts-template)
+[![Test](https://github.com/Desvart/ts-template/actions/workflows/test-master.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test-master.yml)
+
+ 
 ![NodeVersion](https://shields.io/static/v1?label=NodeJS&message=19.X&color=blue)
 ![WindowsVersion](https://shields.io/static/v1?label=Windows&message=10&color=blue)
+[![License](https://img.shields.io/github/license/desvart/ts-template?color=blue)](https://github.com/Desvart/ts-template/blob/master/LICENSE)
 
 </div>
 

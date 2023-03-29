@@ -1,6 +1,6 @@
 {
   "name": "@desvart/ts-template",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "This project aims to build a template to start clean TypeScript projects from scratch based on a fully testable architecture.",
   "keywords": [
     "BDD",
