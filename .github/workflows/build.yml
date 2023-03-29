@@ -2,9 +2,9 @@ name: Build
 
 on:
   workflow_run:
-    workflows: [ "Test-master" ]
-    types:
-      - completed
+    workflows: ["Test"]
+    types: [completed]
+    branches: [master]
 
 jobs:
 

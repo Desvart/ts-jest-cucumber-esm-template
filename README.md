@@ -3,13 +3,13 @@
 # @desvart/ts-template
 
 ![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template/release)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ts-template)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status&branch=master)](https://sonarcloud.io/summary/new_code?id=ts-template)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage&branch=master)](https://sonarcloud.io/summary/new_code?id=ts-template)
 [![Test](https://github.com/Desvart/ts-template/actions/workflows/test-release.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test-release.yml)
 
 ![Version](https://img.shields.io/github/package-json/v/Desvart/ts-template/master)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ts-template)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ts-template)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=alert_status&branch=release)](https://sonarcloud.io/summary/new_code?id=ts-template)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ts-template&metric=coverage&branch=release)](https://sonarcloud.io/summary/new_code?id=ts-template)
 [![Test](https://github.com/Desvart/ts-template/actions/workflows/test-master.yml/badge.svg)](https://github.com/Desvart/ts-template/actions/workflows/test-master.yml)
 
  
