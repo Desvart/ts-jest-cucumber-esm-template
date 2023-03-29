@@ -42,6 +42,9 @@
     "build": "tsc --build --clean",
     "compile": "npm run build"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@cucumber/cucumber": "^9.0.1",
     "@types/jest": "^29.4.0",
