@@ -5,6 +5,7 @@ on:
     workflows: [ "Test" ]
     types: [completed]
     branches: [release]
+    paths: [".github/workflows/publish.yml"]
   release:
     types: [published]
 
