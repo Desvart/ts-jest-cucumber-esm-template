@@ -44,7 +44,7 @@ To use this template, you can either:
 
 * clone it from GitHub [@Desvart/ts-template](https://github.com/Desvart/ts-template) to start your project from
   scratch,
-* download it from npm [@Desvart/ts-template](https://www.npmjs.com/package/@desvart/ts-template) (and then move the
+* download it from npm [ts-template-jest-cucumber-esm](https://www.npmjs.com/package/ts-template-jest-cucumber-esm) (and then move the
   content to your project folder)
 * apply this
   [step-by-step walkthrough](https://github.com/Desvart/ts-jest-cucumber-esm-template/blob/master/doc/setup.md) to build
