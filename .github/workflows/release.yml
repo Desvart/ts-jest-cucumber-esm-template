@@ -38,6 +38,7 @@ jobs:
 
   sonarcloud:
     name: SonarCloud
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
@@ -61,6 +62,7 @@ jobs:
 
   build:
     name: Build
+    needs: sonarcloud
     runs-on: windows-latest
 
     strategy:
@@ -86,6 +88,7 @@ jobs:
 
   publish-npm:
     name: Publish to npmjs
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -110,6 +113,7 @@ jobs:
 
   publish-github:
     name: Publish to GitHub Packages
+    needs: build
     runs-on: ubuntu-latest
 
     permissions:

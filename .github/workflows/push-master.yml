@@ -36,6 +36,7 @@ jobs:
 
   sonarcloud:
     name: SonarCloud
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
@@ -58,6 +59,7 @@ jobs:
 
   build:
     name: Build
+    needs: sonarcloud
     runs-on: windows-latest
 
     strategy:
