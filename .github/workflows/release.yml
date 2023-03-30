@@ -106,33 +106,33 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM2_TOKEN }}
 
-  publish-github:
-    name: Publish to GitHub Packages
-    needs: build
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: 'release'
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '19.x'
-          cache: 'npm'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@desvart'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GTH_TOKEN }}
+#  publish-github:
+#    name: Publish to GitHub Packages
+#    needs: build
+#    runs-on: ubuntu-latest
+#
+#    permissions:
+#      contents: read
+#      packages: write
+#
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#        with:
+#          ref: 'release'
+#
+#      - name: Use Node.js
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: '19.x'
+#          cache: 'npm'
+#          registry-url: 'https://npm.pkg.github.com'
+#          scope: '@desvart'
+#
+#      - name: Install dependencies
+#        run: npm ci
+#
+#      - name: Publish
+#        run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.GTH_TOKEN }}
