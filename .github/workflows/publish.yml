@@ -60,3 +60,8 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GTH_TOKEN }}
+
+      - name: Change access policy
+        run: npm access public @desvart/ts-template
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GTH_TOKEN }}
