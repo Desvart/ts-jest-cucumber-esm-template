@@ -1,6 +1,6 @@
 {
   "name": "ts-template-jest-cucumber-esm",
-  "version": "1.3.13",
+  "version": "1.3.14",
   "description": "This project aims to build a template to start clean TypeScript projects from scratch based on a fully testable architecture.",
   "keywords": [
     "BDD",

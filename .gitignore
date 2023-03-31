@@ -1,7 +1,9 @@
 /.idea/
 /node_modules/
-/test-reports/
 /dist/
+/doc/coverage/
+/doc/cucumber-report/
+/doc/jest-report/
 
 /TODO.md
 
