@@ -12,18 +12,15 @@ jobs:
     name: Test net execution
     runs-on: windows-latest
 
-    strategy:
-      matrix:
-        node-version: [19.x]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '19.x'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -62,10 +59,6 @@ jobs:
     needs: sonarcloud
     runs-on: windows-latest
 
-    strategy:
-      matrix:
-        node-version: [ 19.x ]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -73,7 +66,8 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '19.x'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
